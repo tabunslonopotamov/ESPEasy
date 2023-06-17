@@ -1,3 +1,4 @@
+test
 The scripts in this directory are so called GIT hooks.
 Purpose is to do automatic changes after merge, commit and checkout.
 
