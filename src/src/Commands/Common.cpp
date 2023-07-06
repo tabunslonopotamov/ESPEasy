@@ -206,6 +206,7 @@ String Command_GetORSetETH(struct EventStruct *event,
       else if (TmpStr1.indexOf(F("gpio0"))  != -1) { *value = 1; }
       else if (TmpStr1.indexOf(F("gpio16")) != -1) { *value = 2; }
       else if (TmpStr1.indexOf(F("gpio17")) != -1) { *value = 3; }
+      else if (TmpStr1.indexOf(F("gpio17_dir")) != -1) { *value = 4; }
     }
   }
 

@@ -8,7 +8,8 @@ enum class EthClockMode_t : uint8_t {
   Ext_crystal_osc       = 0,
   Int_50MHz_GPIO_0      = 1,
   Int_50MHz_GPIO_16     = 2,
-  Int_50MHz_GPIO_17_inv = 3
+  Int_50MHz_GPIO_17_inv = 3,
+  Int_50MHz_GPIO_17 = 4
 };
 
 bool   isValid(EthClockMode_t clockMode);
@@ -24,8 +25,8 @@ enum class EthPhyType_t : uint8_t {
   TLK110  = 1,
   RTL8201 = 2,
   DP83848 = 3,
-  DM9051  = 4
-  //,KSZ8081 = 5
+  DM9051  = 4,
+  JL1101 = 5
 };
 
 bool   isValid(EthPhyType_t phyType);

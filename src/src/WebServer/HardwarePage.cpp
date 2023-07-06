@@ -244,12 +244,13 @@ void handle_hardware() {
   addRowLabel_tr_id(F("Ethernet PHY type"), F("ethtype"));
   {
   #if ESP_IDF_VERSION_MAJOR > 3
-    const uint32_t nrItems = 5;
+    const uint32_t nrItems = 6;
   #else
-    const uint32_t nrItems = 2;
+    const uint32_t nrItems = 3;
   #endif
     const __FlashStringHelper * ethPhyTypes[nrItems] = { 
       toString(EthPhyType_t::LAN8710), 
+      toString(EthPhyType_t::JL1101), 
       toString(EthPhyType_t::TLK110)
   #if ESP_IDF_VERSION_MAJOR > 3
       ,
@@ -260,6 +261,7 @@ void handle_hardware() {
       };
     const int ethPhyTypes_index[] = {
       static_cast<int>(EthPhyType_t::LAN8710),
+      static_cast<int>(EthPhyType_t::JL1101),
       static_cast<int>(EthPhyType_t::TLK110)
   #if ESP_IDF_VERSION_MAJOR > 3
       ,
@@ -278,13 +280,14 @@ void handle_hardware() {
   addFormPinSelect(PinSelectPurpose::Ethernet, formatGpioName_output(F("Ethernet Power pin")), F("ethpower"), Settings.ETH_Pin_power);
   addRowLabel_tr_id(F("Ethernet Clock"), F("ethclock"));
   {
-    const __FlashStringHelper * ethClockOptions[4] = { 
+    const __FlashStringHelper * ethClockOptions[5] = { 
       toString(EthClockMode_t::Ext_crystal_osc),
       toString(EthClockMode_t::Int_50MHz_GPIO_0),
       toString(EthClockMode_t::Int_50MHz_GPIO_16),
-      toString(EthClockMode_t::Int_50MHz_GPIO_17_inv)
+      toString(EthClockMode_t::Int_50MHz_GPIO_17_inv),
+      toString(EthClockMode_t::Int_50MHz_GPIO_17)
       };
-    addSelector(F("ethclock"), 4, ethClockOptions, nullptr, nullptr, static_cast<int>(Settings.ETH_Clock_Mode), false, true);
+    addSelector(F("ethclock"), 5, ethClockOptions, nullptr, nullptr, static_cast<int>(Settings.ETH_Clock_Mode), false, true);
   }
 #endif // if FEATURE_ETHERNET
 

@@ -170,6 +170,9 @@ bool ETHConnectRelaxed() {
       EthEventData.markConnected();
     }
   }
+  addLog(LOG_LEVEL_INFO, EthEventData.ethInitSuccess ? F("ETH init ok") : F("ETH init failed"));
+  addLog(LOG_LEVEL_INFO, EthLinkUp() ? F("ETH link up") : F("ETH link down"));
+
   return EthEventData.ethInitSuccess;
 }
 

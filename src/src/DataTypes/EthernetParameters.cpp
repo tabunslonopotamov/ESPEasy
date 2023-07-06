@@ -6,6 +6,7 @@ bool isValid(EthClockMode_t clockMode) {
     case  EthClockMode_t::Int_50MHz_GPIO_0:
     case  EthClockMode_t::Int_50MHz_GPIO_16:
     case  EthClockMode_t::Int_50MHz_GPIO_17_inv:
+    case  EthClockMode_t::Int_50MHz_GPIO_17:
       return true;
 
       // Do not use default: as this allows the compiler to detect any missing cases.
@@ -17,7 +18,9 @@ bool isGpioUsedInETHClockMode(EthClockMode_t clockMode,
                               int8_t gpio) {
   if (((clockMode == EthClockMode_t::Int_50MHz_GPIO_0)      && (gpio == 0)) ||
       ((clockMode == EthClockMode_t::Int_50MHz_GPIO_16)     && (gpio == 16)) ||
-      ((clockMode == EthClockMode_t::Int_50MHz_GPIO_17_inv) && (gpio == 17))) {
+      ((clockMode == EthClockMode_t::Int_50MHz_GPIO_17_inv)     && (gpio == 17)) ||
+      ((clockMode == EthClockMode_t::Int_50MHz_GPIO_17) && (gpio == 17))) {
+
     return true;
   }
   return false;
@@ -29,6 +32,7 @@ const __FlashStringHelper * toString(EthClockMode_t clockMode) {
     case  EthClockMode_t::Int_50MHz_GPIO_0:      return F("50MHz APLL Output on GPIO0");
     case  EthClockMode_t::Int_50MHz_GPIO_16:     return F("50MHz APLL Output on GPIO16");
     case  EthClockMode_t::Int_50MHz_GPIO_17_inv: return F("50MHz APLL Inverted Output on GPIO17");
+    case  EthClockMode_t::Int_50MHz_GPIO_17: return F("50MHz APLL Output on GPIO17");
 
       // Do not use default: as this allows the compiler to detect any missing cases.
   }
@@ -41,6 +45,7 @@ bool isValid(EthPhyType_t phyType) {
     case EthPhyType_t::TLK110:
       return true;
     case EthPhyType_t::RTL8201:
+    case EthPhyType_t::JL1101:
     case EthPhyType_t::DP83848:
     case EthPhyType_t::DM9051:
     #if ESP_IDF_VERSION_MAJOR > 3
@@ -61,6 +66,7 @@ const __FlashStringHelper * toString(EthPhyType_t phyType) {
     case EthPhyType_t::RTL8201: return F("RTL8201");
     case EthPhyType_t::DP83848: return F("DP83848");
     case EthPhyType_t::DM9051:  return F("DM9051");
+    case EthPhyType_t::JL1101:  return F("JL1101");
 
       // Do not use default: as this allows the compiler to detect any missing cases.
   }
